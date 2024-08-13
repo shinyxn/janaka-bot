@@ -32,8 +32,11 @@ export default async function (m: IWebMessageInfoExtended): Promise<void> {
   const ownnumber = process.env.BOTNUMBER;
   const senderNumber: string = m.key.remoteJid ?? '';
   const who = m.key.participant ? m.key.participant : m.key.remoteJid;
-  const groupMetadata = await sock.groupMetadata(senderNumber).catch(() => {});
+
   const isGroup = senderNumber.endsWith('@g.us');
+  const groupMetadata = isGroup
+    ? await sock.groupMetadata(senderNumber).catch(() => {})
+    : null;
   const groupMembers =
     isGroup && groupMetadata && groupMetadata.participants
       ? groupMetadata.participants
