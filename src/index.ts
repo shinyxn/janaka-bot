@@ -135,14 +135,15 @@ async function triBotInitialize(reconnectAttempt = 0) {
 
     if (update.action === 'add') {
       const participants = update.participants;
-      const groupMetadata = await sock.groupMetadata(update.id);
-      const groupName = groupMetadata.subject;
-      const memberCount = groupMetadata.participants.length;
+      // const groupMetadata = await sock.groupMetadata(update.id);
+      // const groupName = groupMetadata.subject;
+      // const memberCount = groupMetadata.participants.length;
 
       for (const participant of participants) {
         const participantName = participant.split('@')[0];
-        const welcomeMessage = `Selamat datang di ${groupName}, @${participantName} senpai 🎉\nKamu adalah member ke-${memberCount} 🔥`;
-        await sock.sendMessage(update.id, {
+       // const welcomeMessage = `Selamat datang di ${groupName}, @${participantName} senpai 🎉\nKamu adalah member ke-${memberCount} 🔥`;
+        const welcomeMessage = `🎉🌟 **Irashai, @${participantName}!** 🌟🎉 \n\n🌸Sudah siap untuk bergabung dengan Komunitas Janaka PENS ga nih? Silahkan isi data diri kalian terlebih dahulu di link dibawah ini ya!!!🌸\n\n👇Form Pendaftaran👇\nhttps://tally.so/r/nPENXe\n\n🤩Kepoin juga tentang kita disini ya🤩\nhttps://linktr.ee/janakapens\n\n**📣 Arigatou gozaimasu! 📣**`;
+        await sock.sendMessage(update.id, { 
           text: welcomeMessage,
           mentions: [participant],
         });
