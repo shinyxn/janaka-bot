@@ -22,7 +22,7 @@ export async function helpCommand(
   ];
 
   const thumbnail =
-    'https://cdn.jsdelivr.net/gh/tribone23/tribot-ts@dev/src/assets/tribot.jpg';
+    'https://cdn.jsdelivr.net/gh/shinyxn/janaka-bot@master/src/assets/tribot.jpg';
   const sourceurl = 'https://tribone.my.id';
   const usage = `*Usage*\n[prefix](command)\n\n-- _Example_ --:\n\`\`\`${prefix}${commandList[2]}\`\`\`\n`;
   const text = `Hello, ${m.pushName}! 🔖\nWhat can i do for you today?\n\n${helpCmd}\n\n*Commands List*\n\`\`\`${commandList}\`\`\`\n\n${usage}\n\n\`\`\`Developed by tribone23\`\`\`\n`;
