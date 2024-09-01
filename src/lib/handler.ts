@@ -26,6 +26,7 @@ export default async function (m: IWebMessageInfoExtended): Promise<void> {
   let body;
   let mentionByReply;
   let mentionByTag;
+  let userState;
 
   const owner1 = process.env.OWNER1;
   const owner2 = process.env.OWNER2;
@@ -136,6 +137,17 @@ export default async function (m: IWebMessageInfoExtended): Promise<void> {
 
       // console.log('Is Tagged:', isTagged);
       // console.log('Is Reply:', isReply);
+      if (isReply) {
+        userState = await aiChatHandler(
+          body,
+          command,
+          senderNumber,
+          m.pushName,
+          m.key.remoteJid,
+          ownnumber,
+        );
+      }
+      
       if (!isTagged && !isReply) {
         return;
       }
@@ -152,14 +164,6 @@ export default async function (m: IWebMessageInfoExtended): Promise<void> {
 
       // console.log('Command:', command);
       // console.log('Arguments:', m.args);
-      const userState = await aiChatHandler(
-        body,
-        command,
-        senderNumber,
-        m.pushName,
-        m.key.remoteJid,
-        ownnumber,
-      );
 
       const q = m.args.join(' ');
 
